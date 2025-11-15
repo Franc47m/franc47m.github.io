@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francisco Domínguez - Portafolio | Ingeniero en Informática</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">FD</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section id="inicio" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="hero-greeting">Hola Mundo, Soy Francisco</p>
+                <h1>Estudiante de <span class="highlight">Ingeniería en Informática</span></h1>
+                <p class="hero-subtitle">Especialista en Desarrollo de Software</p>
+                <p class="intro-text">Apasionado por crear soluciones digitales innovadoras y funcionales que impacten positivamente al usuario final.</p>
+                
+                <div class="hero-buttons">
+                    <a href="assets/proyectos/CV_FranciscoDominguez.pdf" download class="cta-button btn-primary">Descargar CV</a>
+                    <a href="#contacto" class="cta-button btn-secondary">Contáctame</a>
+                </div>
+
+                <div class="hero-social">
+                    <a href="https://www.linkedin.com/in/francisco-dominguez-77953b33a/" target="_blank" class="social-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/fldv.10/" target="_blank" class="social-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.057-1.645.069-4.849.069-3.205 0-3.584-.012-4.849-.069-3.259-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/50766218585?text=hola%2C%20estoy%20interesado%20en%20tu%20servicio" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M20.52 3.48A11.74 11.74 0 0012 .25 11.64 11.64 0 002.05 8.74 11.24 11.24 0 000 12c0 2.07.62 3.99 1.8 5.62L.75 22l4.78-1.27A11.37 11.37 0 0012 24c3.13 0 6.06-1.22 8.27-3.43A11.65 11.65 0 0023.75 12 11.64 11.64 0 0020.52 3.48zM12 21.5a9.43 9.43 0 01-4.83-1.31l-.34-.2-2.84.75.76-2.77-.22-.36A9.25 9.25 0 012.75 12 9.25 9.25 0 0112 2.75 9.28 9.28 0 0121.25 12 9.28 9.28 0 0112 21.5z"/>
+                            <path d="M16.4 13.3c-.2-.1-1.1-.6-1.3-.7-.2-.1-.3-.1-.5.1s-.6.6-.7.8c-.1.2-.2.2-.4.1-.2-.1-.8-.3-1.6-1.1-.6-.6-1.1-1.3-1.2-1.6-.1-.2 0-.3.1-.4.1-.1.2-.3.3-.4.1-.1.1-.2.2-.4.1-.2 0-.3-.1-.4-.1-.1-.5-1.1-.7-1.5-.2-.4-.4-.3-.5-.3-.1 0-.2 0-.4 0-.1 0-.3.1-.5.3-.2.2-.7.6-.7 1.5 0 .9.7 1.8.8 2.1.1.2 1.4 2.2 3.4 3.1.7.3 1.3.5 1.8.6.2.1.6.1.8.1.3 0 .6-.1.9-.2.1-.1.5-.2.6-.2.2-.1.5-.3.6-.6.1-.3.1-.5.1-.6-.1-.1-.2-.1-.4-.2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="hero-image-wrapper">
+                    <svg class="orbit-lines" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+                        <!-- Círculos orbitales -->
+                        <circle cx="200" cy="200" r="60" fill="none" stroke="rgba(0, 212, 255, 0.3)" stroke-width="2"/>
+                        <circle cx="200" cy="200" r="100" fill="none" stroke="rgba(0, 212, 255, 0.2)" stroke-width="2"/>
+                        <circle cx="200" cy="200" r="140" fill="none" stroke="rgba(0, 212, 255, 0.1)" stroke-width="2"/>
+                        
+                        <!-- Líneas curvas hacia los logos -->
+                        <path d="M 200 60 Q 220 80 240 100" fill="none" stroke="rgba(0, 212, 255, 0.4)" stroke-width="2"/>
+                        <path d="M 280 100 Q 260 120 240 140" fill="none" stroke="rgba(0, 212, 255, 0.4)" stroke-width="2"/>
+                        <path d="M 340 200 Q 320 200 280 200" fill="none" stroke="rgba(0, 212, 255, 0.4)" stroke-width="2"/>
+                        <path d="M 280 300 Q 260 280 240 260" fill="none" stroke="rgba(0, 212, 255, 0.4)" stroke-width="2"/>
+                        <path d="M 200 340 Q 180 320 160 300" fill="none" stroke="rgba(0, 212, 255, 0.4)" stroke-width="2"/>
+                        <path d="M 120 300 Q 140 280 160 260" fill="none" stroke="rgba(0, 212, 255, 0.4)" stroke-width="2"/>
+                        <path d="M 60 200 Q 80 200 120 200" fill="none" stroke="rgba(0, 212, 255, 0.4)" stroke-width="2"/>
+                        <path d="M 120 100 Q 140 120 160 140" fill="none" stroke="rgba(0, 212, 255, 0.4)" stroke-width="2"/>
+                    </svg>
+
+                    <div class="orbit-circles">
+                        <div class="orbit-circle orbit-circle-1"></div>
+                        <div class="orbit-circle orbit-circle-2"></div>
+                        <div class="orbit-circle orbit-circle-3"></div>
+                    </div>
+                    <img src="https://i.pinimg.com/originals/7e/b2/49/7eb249f2fd2e58e9ad6dd60ef892971b.gif" alt="Francisco Domínguez" class="hero-profile-img">
+                    <div class="hero-orbit">
+                        <div class="orbit-item orbit-1">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5">
+                        </div>
+                        <div class="orbit-item orbit-2">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="CSS3">
+                        </div>
+                        <div class="orbit-item orbit-3">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript">
+                        </div>
+                        <div class="orbit-item orbit-4">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java">
+                        </div>
+                        <div class="orbit-item orbit-5">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL">
+                        </div>
+                        <div class="orbit-item orbit-6">
+                            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="PHP">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección ¿Quién Soy? -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Sobre Mí</h2>
+            
+            <div class="about-cards">
+                <div class="about-card">
+                    <div class="card-icon-svg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3>¿Quién Soy?</h3>
+                    <p>Soy un estudiante de 4° año de Ingeniería en Informática de la Universidad de Panamá, apasionado por el desarrollo de software y las soluciones tecnológicas innovadoras.</p>
+                </div>
+
+                <div class="about-card">
+                    <div class="card-icon-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rocket-icon lucide-rocket"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+                    </div>
+                    <h3>Mi Objetivo</h3>
+                    <p>Mi objetivo es seguir aprendiendo y aplicar mis conocimientos para crear soluciones empresariales de alta calidad que impacten positivamente en los usuarios finales.</p>
+                </div>
+
+                <div class="about-card">
+                    <div class="card-icon-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain-icon lucide-brain"><path d="M12 18V5"/><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/><path d="M18 18a4 4 0 0 0 2-7.464"/><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/><path d="M6 18a4 4 0 0 1-2-7.464"/><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/></svg>
+                    </div>
+                    <h3>Mi Perfil</h3>
+                    <p>Me caracterizo por mi capacidad para adaptarme rápidamente a nuevos entornos y tecnologías, mantener un alto nivel de detalle en mis proyectos y mi compromiso con la excelencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Habilidades -->
+    <section id="habilidades" class="habilidades">
+        <div class="container">
+            <h2>
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <path d="M12 1v6m0 6v6"></path>
+                    <path d="M4.22 4.22l4.24 4.24m5.08 0l4.24-4.24"></path>
+                    <path d="M1 12h6m6 0h6"></path>
+                    <path d="M4.22 19.78l4.24-4.24m5.08 0l4.24 4.24"></path>
+                </svg>
+                Habilidades
+            </h2>
+            
+            <!-- Selector de áreas -->
+            <div class="area-selector">
+                <button class="area-btn active" onclick="mostrarArea('software')">Desarrollo de Software</button>
+                <button class="area-btn" onclick="mostrarArea('bases-datos')">Bases de Datos</button>
+                <button class="area-btn" onclick="mostrarArea('apps')">Apps Empresariales</button>
+                <button class="area-btn" onclick="mostrarArea('tecnico')">Plus Técnico</button>
+            </div>
+
+            <!-- Contenido de áreas (Blog) -->
+            <div class="blog-container">
+                <!-- Software Development -->
+                <div id="software" class="blog-area active">
+                    <div class="blog-header">
+                        <h3>
+                            <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="M7 9l2 2-2 2"></path>
+                                <path d="M13 15h4"></path>
+                            </svg>
+                            Desarrollo de Software
+                        </h3>
+                        <span class="area-tag">Especialización Principal</span>
+                    </div>
+                    <div class="blog-content">
+                        <h4>Mi especialización:</h4>
+                        <ul>
+                            <li><strong>Apps de escritorio</strong> con Java (Swing + MVC)</li>
+                            <li><strong>Aplicaciones web</strong> con HTML, CSS, JS, PHP</li>
+                            <li><strong>Patrones de diseño</strong> - MVC, Singleton, Factory, Observer</li>
+                            <li><strong>Arquitectura de software</strong> y buenas prácticas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Bases de Datos -->
+                <div id="bases-datos" class="blog-area">
+                    <div class="blog-header">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-database-icon lucide-database"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+                            Bases de Datos
+                        </h3>
+                        <span class="area-tag">Especialización Complementaria</span>
+                    </div>
+                    <div class="blog-content">
+                        <h4>Mi especialización:</h4>
+                        <ul>
+                            <li><strong>Diseño y normalización</strong> - Hasta 3FN y BCNF</li>
+                            <li><strong>MySQL & PostgreSQL</strong> - Motores relacionales</li>
+                            <li><strong>Triggers, vistas, procedimientos</strong> - Lógica avanzada</li>
+                            <li><strong>Optimización de consultas</strong> y administración de índices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apps Empresariales -->
+                <div id="apps" class="blog-area">
+                    <div class="blog-header">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor-smartphone-icon lucide-monitor-smartphone"><path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8"/><path d="M10 19v-3.96 3.15"/><path d="M7 19h5"/><rect width="6" height="10" x="16" y="12" rx="2"/></svg>
+                            Apps Empresariales
+                        </h3>
+                        <span class="area-tag">Experiencia Real</span>
+                    </div>
+                    <div class="blog-content">
+                        <h4>Mi especialización:</h4>
+                        <ul>
+                            <li><strong>Sistemas multi-usuario</strong> con gestión de roles</li>
+                            <li><strong>Control de inventarios</strong> en tiempo real</li>
+                            <li><strong>Módulos de finanzas</strong> y transacciones</li>
+                            <li><strong>Reportes dinámicos</strong> y validaciones de seguridad</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Plus Técnico -->
+                <div id="tecnico" class="blog-area">
+                    <div class="blog-header">
+                        <h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-branch-icon lucide-git-branch"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                            Plus Técnico
+                        </h3>
+                        <span class="area-tag">Competencias Complementarias</span>
+                    </div>
+                    <div class="blog-content">
+                        <h4>Mi especialización:</h4>
+                        <ul>
+                            <li><strong>Git & GitHub</strong> - Control de versiones y colaboración</li>
+                            <li><strong>Soporte y mantenimiento de PC</strong> - Diagnóstico y reparación</li>
+                            <li><strong>Redes básicas</strong> - Conceptos e implementación</li>
+                            <li><strong>Documentación técnica</strong> y comunicación clara</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stack Tecnológico -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2>
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                </svg>
+                Stack Tecnológico
+            </h2>
+            <div class="tech-icons">
+                <div class="tech-item">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java">
+                    <p>Java</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="MySQL">
+                    <p>MySQL</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="PostgreSQL">
+                    <p>PostgreSQL</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="HTML5">
+                    <p>HTML5</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="CSS3">
+                    <p>CSS3</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript">
+                    <p>JavaScript</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="PHP">
+                    <p>PHP</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git">
+                    <p>Git</p>
+                </div>
+                <div class="tech-item">
+                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" alt="GitHub">
+                    <p>GitHub</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Proyectos -->
+    <section id="proyectos" class="proyectos">
+        <div class="container">
+            <h2>Proyectos</h2>
+
+            <div class="proyectos-grid">
+                <div class="proyectos-left">
+                    <!-- Proyecto 1: Control de Documentos (estructura uniforme: imágenes arriba, info abajo) -->
+                    <div class="proyecto-card proyecto-standard">
+                        <div class="proyecto-imagenes">
+                            <img src="assets/proyectos/Gestion_de_documentos_UP.png" alt="Control de Documentos - Vista 1" class="proyecto-img">
+                            <img src="assets/proyectos/Gestion_de_documentos_UP_2.png" alt="Control de Documentos - Vista 2" class="proyecto-img">
+                        </div>
+                        <div class="proyecto-info">
+                            <div class="proyecto-header">
+                                <h3>Control de Documentos</h3>
+                                <p class="proyecto-subtitle">Sistema de Recepción Académica</p>
+                            </div>
+                            <p class="proyecto-descripcion">Aplicación de escritorio para la gestión y seguimiento de documentos universitarios.</p>
+                            <p class="tech-used">Tech Stack: Java · Swing · MySQL · JDBC</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proyectos-right">
+                    <!-- Proyecto 2: Sistema de Gestión Agrícola (misma estructura que el anterior) -->
+                    <div class="proyecto-card proyecto-standard">
+                        <div class="proyecto-imagenes">
+                            <img src="assets/proyectos/Cooperativa_Agricola.png" alt="Cooperativa - Vista 1" class="proyecto-img">
+                            <img src="assets/proyectos/Coperativa_agricola_2.png" alt="Cooperativa - Vista 2" class="proyecto-img">
+                        </div>
+                        <div class="proyecto-info">
+                            <div class="proyecto-header">
+                                <h3>Sistema de Gestión Agrícola</h3>
+                                <p class="proyecto-subtitle">Cooperativa Agrícola La Pintada</p>
+                            </div>
+                            <p class="proyecto-descripcion">Sistema web integral para la administración de cooperativas agrícolas, panel administrativo y reportes.</p>
+                            <div class="proyecto-features">
+                                <span>Dashboard con datos en tiempo real</span>
+                                <span>Control de inventario inteligente</span>
+                                <span>Módulo financiero automatizado</span>
+                            </div>
+                            <p class="tech-used">Tech Stack: HTML · CSS · JavaScript · PHP · MySQL</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Blog/Comentarios -->
+    <section id="blog" class="comentarios">
+        <div class="container">
+            <h2>
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Comentarios
+            </h2>
+            <p class="section-subtitle">¿Qué te pareció mi portafolio? ¿Tienes alguna pregunta sobre mis proyectos o habilidades? ¡Me encantaría escucharte!</p>
+            
+            <div class="comentarios-container">
+                <form id="formulario-comentarios" class="comentario-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre *</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="tu.email@ejemplo.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="asunto">Asunto *</label>
+                        <input type="text" id="asunto" name="asunto" placeholder="¿Sobre qué es tu comentario?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensaje">Tu Comentario *</label>
+                        <textarea id="mensaje" name="mensaje" rows="6" placeholder="Comparte tus pensamientos..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Enviar Comentario</button>
+                </form>
+
+                <div id="comentarios-lista" class="comentarios-lista">
+                    <h3>Comentarios Recientes</h3>
+                    <!-- Los comentarios se cargarán aquí con JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2>
+                <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Contacto
+            </h2>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/francisco-dominguez-77953b33a/" target="_blank" class="social-btn linkedin">
+                    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="LinkedIn">
+                </a>
+                <a href="https://www.instagram.com/fldv.10/" target="_blank" class="social-btn instagram">
+                    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram">
+                </a>
+                <a href="https://leetcode.com/u/fran234/" target="_blank" class="social-btn leetcode">
+                    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" alt="LeetCode">
+                </a>
+            </div>
+            
+            <div class="contacto-mensaje">
+                <h3>
+                    <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Colaboremos
+                </h3>
+                <p>Abierto a proyectos, prácticas profesionales y oportunidades de desarrollo.</p>
+                <p><strong>Contáctame via Issues · Discussions · Redes Sociales</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p><em>"Estudiante hoy, ingeniero mañana. Programador siempre."</em></p>
+            <p><strong>Desarrollado por Francisco Domínguez</strong></p>
+            <p>&copy; 2025 Francisco Domínguez. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
