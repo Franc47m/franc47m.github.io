@@ -11,6 +11,13 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 // Variables globales
 const formularioComentarios = document.getElementById('formulario-comentarios');
 const comentariosLista = document.getElementById('comentarios-lista');
+let comentariosCarousel = {
+    comentarios: [],
+    indiceActual: 0,
+    track: null,
+    arrowLeft: null,
+    arrowRight: null
+};
 
 // ============================================
 // FUNCIÓN: Mostrar área de habilidades
@@ -77,25 +84,57 @@ async function cargarComentarios() {
 // ============================================
 
 function renderizarComentarios(comentarios) {
-    const contenedorLista = comentariosLista.querySelector('.comentarios-lista') || comentariosLista;
+    const carouselTrack = comentariosLista.querySelector('.comentarios-carousel-track');
+    const carouselControls = comentariosLista.querySelector('.carousel-controls');
     
-    // Limpiar comentarios previos
-    const comentariosAntiguos = contenedorLista.querySelectorAll('.comentario-item');
-    comentariosAntiguos.forEach(comentario => comentario.remove());
+    if (!carouselTrack) {
+        // Fallback si no existe la estructura del carrusel
+        const contenedorLista = comentariosLista.querySelector('.comentarios-lista') || comentariosLista;
+        const comentariosAntiguos = contenedorLista.querySelectorAll('.comentario-item');
+        comentariosAntiguos.forEach(comentario => comentario.remove());
 
-    if (comentarios.length === 0) {
-        const mensaje = document.createElement('div');
-        mensaje.className = 'no-comentarios';
-        mensaje.innerHTML = '<p>Aún no hay comentarios. ¡Sé el primero en dejar tu comentario! 💬</p>';
-        contenedorLista.appendChild(mensaje);
+        if (comentarios.length === 0) {
+            const mensaje = document.createElement('div');
+            mensaje.className = 'no-comentarios';
+            mensaje.innerHTML = '<p>Aún no hay comentarios. ¡Sé el primero en dejar tu comentario! 💬</p>';
+            contenedorLista.appendChild(mensaje);
+            return;
+        }
+
+        comentarios.reverse().forEach(comentario => {
+            const elementoComentario = crearElementoComentario(comentario);
+            contenedorLista.appendChild(elementoComentario);
+        });
         return;
     }
 
-    // Mostrar comentarios en orden inverso (más recientes primero)
-    comentarios.reverse().forEach(comentario => {
+    // Limpiar comentarios previos
+    carouselTrack.innerHTML = '';
+
+    if (comentarios.length === 0) {
+        carouselTrack.innerHTML = '<div class="no-comentarios"><p>Aún no hay comentarios. ¡Sé el primero en dejar tu comentario! 💬</p></div>';
+        if (carouselControls) carouselControls.style.display = 'none';
+        return;
+    }
+
+    // Mostrar controles si hay comentarios
+    if (carouselControls) carouselControls.style.display = 'flex';
+
+    // Guardar comentarios y resetear índice
+    comentariosCarousel.comentarios = comentarios.reverse(); // Más recientes primero
+    comentariosCarousel.indiceActual = 0;
+    comentariosCarousel.track = carouselTrack;
+    comentariosCarousel.arrowLeft = comentariosLista.querySelector('.carousel-arrow-left');
+    comentariosCarousel.arrowRight = comentariosLista.querySelector('.carousel-arrow-right');
+
+    // Crear elementos de comentarios
+    comentariosCarousel.comentarios.forEach(comentario => {
         const elementoComentario = crearElementoComentario(comentario);
-        contenedorLista.appendChild(elementoComentario);
+        carouselTrack.appendChild(elementoComentario);
     });
+
+    // Mostrar el primer comentario y actualizar flechas
+    actualizarCarousel();
 }
 
 // ============================================
@@ -106,22 +145,102 @@ function crearElementoComentario(comentario) {
     const div = document.createElement('div');
     div.className = 'comentario-item';
     
-    const fecha = new Date(comentario.fecha).toLocaleDateString('es-ES', {
+    let fecha = new Date(comentario.fecha);
+    // Restar 5 horas para ajustar a la hora local de Panamá
+    fecha = new Date(fecha.getTime() - 5 * 60 * 60 * 1000);
+    const fechaFormato = fecha.toLocaleDateString('es-ES', {
         year: 'numeric',
         month: 'short',
-        day: 'numeric',
+        day: 'numeric'
+    });
+    const horaFormato = fecha.toLocaleTimeString('es-ES', {
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
+        hour12: true
     });
 
     div.innerHTML = `
         <div class="comentario-autor"><strong>Nombre:</strong> ${escaparHTML(comentario.nombre)}</div>
         <div class="comentario-asunto"><strong>Asunto:</strong> ${escaparHTML(comentario.asunto)}</div>
         <div class="comentario-texto">${escaparHTML(comentario.mensaje)}</div>
-        <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem;"><strong>Fecha:</strong> ${fecha}</div>
+        <div class="comentario-fecha-container">
+            <span class="comentario-fecha"><strong>Fecha:</strong> ${fechaFormato}</span>
+            <span class="comentario-hora"><strong>Hora:</strong> ${horaFormato}</span>
+        </div>
     `;
 
     return div;
+}
+
+// ============================================
+// FUNCIONES: Navegación del carrusel
+// ============================================
+
+function actualizarCarousel() {
+    if (!comentariosCarousel.track || comentariosCarousel.comentarios.length === 0) return;
+
+    const desplazamiento = comentariosCarousel.indiceActual * -100;
+    comentariosCarousel.track.style.transform = `translateX(${desplazamiento}%)`;
+
+    // Actualizar estado de las flechas
+    actualizarFlechas();
+}
+
+function actualizarFlechas() {
+    if (!comentariosCarousel.arrowLeft || !comentariosCarousel.arrowRight) return;
+    
+    if (comentariosCarousel.comentarios.length <= 1) {
+        // Ocultar flechas si hay un comentario o menos
+        comentariosCarousel.arrowLeft.style.display = 'none';
+        comentariosCarousel.arrowRight.style.display = 'none';
+        return;
+    }
+
+    // Mostrar flechas si hay más de un comentario
+    comentariosCarousel.arrowLeft.style.display = 'flex';
+    comentariosCarousel.arrowRight.style.display = 'flex';
+
+    // Actualizar estado de las flechas según el índice actual
+    const puedeIrAtras = comentariosCarousel.indiceActual > 0;
+    const puedeIrAdelante = comentariosCarousel.indiceActual < comentariosCarousel.comentarios.length - 1;
+
+    // Flecha izquierda
+    if (puedeIrAtras) {
+        comentariosCarousel.arrowLeft.style.opacity = '1';
+        comentariosCarousel.arrowLeft.disabled = false;
+        comentariosCarousel.arrowLeft.style.cursor = 'pointer';
+    } else {
+        comentariosCarousel.arrowLeft.style.opacity = '0.5';
+        comentariosCarousel.arrowLeft.disabled = true;
+        comentariosCarousel.arrowLeft.style.cursor = 'not-allowed';
+    }
+
+    // Flecha derecha
+    if (puedeIrAdelante) {
+        comentariosCarousel.arrowRight.style.opacity = '1';
+        comentariosCarousel.arrowRight.disabled = false;
+        comentariosCarousel.arrowRight.style.cursor = 'pointer';
+    } else {
+        comentariosCarousel.arrowRight.style.opacity = '0.5';
+        comentariosCarousel.arrowRight.disabled = true;
+        comentariosCarousel.arrowRight.style.cursor = 'not-allowed';
+    }
+}
+
+function siguienteComentario() {
+    if (comentariosCarousel.comentarios.length === 0) return;
+    if (comentariosCarousel.indiceActual < comentariosCarousel.comentarios.length - 1) {
+        comentariosCarousel.indiceActual++;
+        actualizarCarousel();
+    }
+}
+
+function anteriorComentario() {
+    if (comentariosCarousel.comentarios.length === 0) return;
+    if (comentariosCarousel.indiceActual > 0) {
+        comentariosCarousel.indiceActual--;
+        actualizarCarousel();
+    }
 }
 
 // ============================================
@@ -328,6 +447,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cargar comentarios al iniciar
     cargarComentarios();
+
+    // Configurar eventos de las flechas del carrusel
+    const arrowLeft = comentariosLista?.querySelector('.carousel-arrow-left');
+    const arrowRight = comentariosLista?.querySelector('.carousel-arrow-right');
+
+    if (arrowLeft) {
+        arrowLeft.addEventListener('click', anteriorComentario);
+    }
+
+    if (arrowRight) {
+        arrowRight.addEventListener('click', siguienteComentario);
+    }
 
     // Mensaje de bienvenida en la consola
     console.log('%c👋 ¡Bienvenido al portafolio de Francisco Domínguez!', 

@@ -952,9 +952,8 @@ body {
     background: var(--dark-bg);
     padding: 30px;
     border-radius: 15px;
-    max-height: 600px;
-    overflow-y: auto;
     border: 1px solid var(--border-color);
+    box-sizing: border-box;
 }
 
 .comentarios-lista h3 {
@@ -970,6 +969,21 @@ body {
     margin-bottom: 1.5rem;
     border-left: 4px solid var(--primary-color);
     animation: slideInLeft 0.5s ease;
+}
+
+/* Fechas una al lado de la otra */
+.comentario-fecha-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.comentario-fecha,
+.comentario-hora {
+    display: inline-block;
 }
 
 .comentario-autor {
@@ -995,6 +1009,267 @@ body {
     text-align: center;
     color: var(--text-light);
     padding: 2rem;
+}
+
+/* ============================================
+   CARRUSEL DE COMENTARIOS
+   ============================================ */
+
+.comentarios-carousel-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.comentarios-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+}
+
+.comentarios-carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+    box-sizing: border-box;
+}
+
+.comentarios-carousel-track .comentario-item {
+    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    border: 1px solid var(--primary-color);
+    border-left: none;
+    background: var(--light-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+}
+
+/* Controles del carrusel - flechas debajo */
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.carousel-arrow {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    padding: 0;
+}
+
+.carousel-arrow:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.carousel-arrow:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.carousel-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+.carousel-arrow:disabled:hover {
+    background: transparent;
+    color: var(--primary-color);
+    box-shadow: none;
+    transform: scale(1);
+}
+
+.carousel-arrow svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Responsive para carrusel */
+@media (max-width: 768px) {
+    .comentarios-carousel-wrapper {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .comentarios-carousel {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .comentarios-carousel-track .comentario-item {
+        padding: 25px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .carousel-controls {
+        gap: 1.5rem;
+        margin-top: 1rem;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .carousel-arrow {
+        width: 45px;
+        height: 45px;
+        flex-shrink: 0;
+    }
+
+    .carousel-arrow svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .comentario-fecha-container {
+        gap: 0.75rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .comentarios-carousel-wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .comentarios-carousel {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .comentarios-carousel-track {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .comentarios-carousel-track .comentario-item {
+        padding: 18px 15px;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .comentarios-carousel-track .comentario-autor,
+    .comentarios-carousel-track .comentario-asunto {
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+        word-break: break-word;
+    }
+
+    .comentarios-carousel-track .comentario-texto {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .carousel-controls {
+        gap: 1rem;
+        margin-top: 1rem;
+        padding: 0 10px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
+    }
+
+    .carousel-arrow svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .comentario-fecha-container {
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        word-break: break-word;
+    }
+}
+
+@media (max-width: 360px) {
+    .comentarios-carousel-wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .comentarios-carousel {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 0.75rem;
+    }
+
+    .comentarios-carousel-track .comentario-item {
+        padding: 15px 12px;
+        font-size: 0.85rem;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .comentarios-carousel-track .comentario-autor,
+    .comentarios-carousel-track .comentario-asunto {
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .comentarios-carousel-track .comentario-texto {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .carousel-controls {
+        gap: 0.75rem;
+        margin-top: 0.75rem;
+        padding: 0 5px;
+    }
+
+    .carousel-arrow {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+    }
+
+    .carousel-arrow svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .comentario-fecha-container {
+        font-size: 0.7rem;
+        gap: 0.4rem;
+    }
 }
 
 /* ============================================
@@ -1283,6 +1558,19 @@ body {
 
     .comentarios-lista {
         padding: 20px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .comentarios-lista h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .comentarios-carousel-wrapper {
+        width: 100%;
+        max-width: 100%;
     }
 
     .proyecto-contenido {
@@ -1379,6 +1667,24 @@ body {
     .comentarios h2,
     .contacto h2 {
         font-size: 1.8rem;
+    }
+
+    .comentarios-lista {
+        padding: 15px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .comentarios-lista h3 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .comentarios-carousel-wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
     }
 
     .blog-header h3 {
