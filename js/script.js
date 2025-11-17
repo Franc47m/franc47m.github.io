@@ -101,7 +101,7 @@ function renderizarComentarios(comentarios) {
             return;
         }
 
-        comentarios.reverse().forEach(comentario => {
+        comentarios.forEach(comentario => {
             const elementoComentario = crearElementoComentario(comentario);
             contenedorLista.appendChild(elementoComentario);
         });
@@ -121,7 +121,7 @@ function renderizarComentarios(comentarios) {
     if (carouselControls) carouselControls.style.display = 'flex';
 
     // Guardar comentarios y resetear índice
-    comentariosCarousel.comentarios = comentarios.reverse(); // Más recientes primero
+    comentariosCarousel.comentarios = comentarios; // Ya están ordenados por Supabase (más recientes primero)
     comentariosCarousel.indiceActual = 0;
     comentariosCarousel.track = carouselTrack;
     comentariosCarousel.arrowLeft = comentariosLista.querySelector('.carousel-arrow-left');
