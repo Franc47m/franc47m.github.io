@@ -484,6 +484,81 @@ body {
     gap: 12px;
 }
 
+/* CTA debajo del selector de áreas */
+.habilidades-cta {
+    text-align: center;
+    margin: 0 auto 2rem auto;
+}
+.habilidades-cta .small-cta {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+    border-radius: 999px;
+}
+.habilidades-cta .cta-note {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+/* Tarjetas de features */
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+.feature-card {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: rgba(10,20,40,0.6);
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,212,255,0.06);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0,212,255,0.08);
+}
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(14,165,233,0.04));
+    color: var(--primary-color);
+}
+/* SVGs inside feature icons should size to fit and inherit color */
+.feature-icon svg {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+.feature-body h5 {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    color: #e6f7ff;
+}
+.feature-body p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Animación al cambiar área */
+.blog-area {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.blog-area.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Estilos para iconos SVG */
 .section-icon {
     width: 32px;
@@ -681,13 +756,13 @@ body {
    ============================================ */
 
 .proyectos {
-    padding: 80px 20px;
+    padding: 50px 20px;
     background: var(--light-bg);
 }
 
 .proyectos h2 {
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     color: var(--text-dark);
     text-align: left;
     font-weight: 700;
@@ -856,13 +931,13 @@ body {
    ============================================ */
 
 .comentarios {
-    padding: 80px 20px;
+    padding: 50px 20px;
     background: var(--light-bg);
 }
 
 .comentarios h2 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: var(--primary-color);
     text-align: center;
     display: flex;
@@ -875,7 +950,7 @@ body {
     text-align: center;
     color: var(--text-light);
     font-size: 1.1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 .comentarios-container {
@@ -1479,14 +1554,13 @@ body {
         height: 220px;
     }
 
-    .orbit-item {
-        width: 45px;
-        height: 45px;
-    }
-
-    .orbit-item img {
-        width: 24px;
-        height: 24px;
+    @keyframes orbit {
+        from {
+            transform: rotate(0deg) translateX(120px) rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg) translateX(120px) rotate(-360deg);
+        }
     }
 
     .hero h1 {
@@ -1637,14 +1711,13 @@ body {
         height: 185px;
     }
 
-    .orbit-item {
-        width: 40px;
-        height: 40px;
-    }
-
-    .orbit-item img {
-        width: 20px;
-        height: 20px;
+    @keyframes orbit {
+        from {
+            transform: rotate(0deg) translateX(80px) rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg) translateX(80px) rotate(-360deg);
+        }
     }
 
     .hero h1 {
