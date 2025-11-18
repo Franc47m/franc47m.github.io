@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+    <div class="animated-bg" aria-hidden="true"></div>
     <!-- Navegación -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -504,13 +505,46 @@
                             </div>
                             <p class="proyecto-descripcion">Sistema web integral para la administración de cooperativas agrícolas, panel administrativo y reportes.</p>
                             <div class="proyecto-features">
-                                <span>Dashboard con datos en tiempo real</span>
-                                <span>Control de inventario inteligente</span>
-                                <span>Módulo financiero automatizado</span>
+                                <!-- Removed feature badges as requested -->
                             </div>
                             <p class="tech-used">Tech Stack: HTML · CSS · JavaScript · PHP · MySQL</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video del proyecto en proceso -->
+    <section class="proyectos-video" aria-label="Demo de proyecto en proceso">
+        <div class="container">
+            <h2>Demo: Proyecto en Proceso</h2>
+            <p class="video-intro">Muestra rápida del login / interfaz de escritorio (Java). Haz clic para ver más.</p>
+
+            <div class="video-card">
+                <div id="videoThumb" class="video-thumb" role="button" tabindex="0" aria-label="Ver demo del proyecto" data-src-mp4="assets/proyectos/ProyectoEnproceso.mp4" data-src-mkv="">
+                    <div class="video-thumb-inner">
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <circle cx="12" cy="12" r="11" fill="rgba(0,212,255,0.12)"/>
+                            <path d="M10 8l6 4-6 4V8z" fill="currentColor"/>
+                        </svg>
+                        <div class="video-thumb-text">
+                            <strong>ProyectoEnProceso.mp4</strong>
+                            <span>Login · Interfaz de Escritorio (Java)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para reproducir video en pantalla completa -->
+            <div id="videoModal" class="video-modal" aria-hidden="true">
+                <div class="video-modal-backdrop" id="videoBackdrop"></div>
+                <div class="video-modal-content" role="dialog" aria-modal="true" aria-label="Reproductor de video">
+                    <button class="video-close" id="videoClose" aria-label="Cerrar vídeo">×</button>
+                    <video id="modalVideo" controls playsinline preload="metadata">
+                        <source src="" type="video/mp4">
+                        Tu navegador no soporta este formato de vídeo.
+                    </video>
                 </div>
             </div>
         </div>

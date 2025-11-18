@@ -467,6 +467,160 @@ document.addEventListener('DOMContentLoaded', function() {
         'font-size: 14px; color: #ec4899;');
     console.log('%c💼 Especialista en Desarrollo de Software y Bases de Datos', 
         'font-size: 14px; color: #f59e0b;');
+
+    // === Preparar elementos para reveal + svg-draw ===
+    // Añadir clase svg-draw a los SVGs dentro de .feature-icon para animación
+    document.querySelectorAll('.feature-icon svg, .about-card svg, .tech-item img').forEach(el => {
+        if (el.tagName.toLowerCase() === 'svg') el.classList.add('svg-draw');
+    });
+
+    // IntersectionObserver para reveal on scroll
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.12
+    });
+
+    // Seleccionar elementos a observar
+    const revealSelectors = ['.feature-card', '.proyecto-card', '.about-card', '.blog-area', '.comentario-item', '.tech-item', '.hero-profile-img'];
+    revealSelectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(node => {
+            node.classList.add('reveal');
+            revealObserver.observe(node);
+        });
+    });
+
+    // Parallax effect para avatar (suave, basado en scroll)
+    const avatar = document.querySelector('.hero-profile-img');
+    if (avatar) {
+        window.addEventListener('scroll', () => {
+            const rect = avatar.getBoundingClientRect();
+            const mid = window.innerHeight / 2;
+            const distance = rect.top - mid;
+            const max = window.innerHeight;
+            const ratio = Math.max(Math.min(distance / max, 1), -1);
+            // Mover en el eje Y ligeramente (inverso para efecto parallax)
+            avatar.style.transform = `translate(-50%, calc(-50% + ${ratio * 8}px))`;
+        }, { passive: true });
+    }
+
+    // Touch support: trigger animations on tap for mobile users
+    (function enableTouchInteractions() {
+        // Add touch-active on feature cards/icons so taps feel responsive
+        document.querySelectorAll('.feature-card, .feature-icon').forEach(el => {
+            let touchTimeout = null;
+            el.addEventListener('touchstart', (e) => {
+                el.classList.add('touch-active');
+                if (touchTimeout) clearTimeout(touchTimeout);
+                touchTimeout = setTimeout(() => {
+                    el.classList.remove('touch-active');
+                }, 800);
+            }, { passive: true });
+
+            el.addEventListener('touchend', () => {
+                if (touchTimeout) clearTimeout(touchTimeout);
+                // keep the visual for a short moment then remove
+                setTimeout(() => el.classList.remove('touch-active'), 120);
+            });
+
+            el.addEventListener('touchmove', () => {
+                if (touchTimeout) clearTimeout(touchTimeout);
+                el.classList.remove('touch-active');
+            }, { passive: true });
+        });
+
+        // Make CTA buttons show pressed state reliably on touch
+        document.querySelectorAll('.cta-button').forEach(btn => {
+            btn.addEventListener('touchstart', (e) => {
+                btn.classList.add('pressed');
+                setTimeout(() => btn.classList.remove('pressed'), 600);
+            }, { passive: true });
+            btn.addEventListener('touchend', () => {
+                setTimeout(() => btn.classList.remove('pressed'), 120);
+            });
+        });
+    })();
+
+    // ===== Video modal: abrir / cerrar y controlar reproducción =====
+    (function setupVideoModal() {
+        const thumb = document.getElementById('videoThumb');
+        const modal = document.getElementById('videoModal');
+        const backdrop = document.getElementById('videoBackdrop');
+        const closeBtn = document.getElementById('videoClose');
+        const modalVideo = document.getElementById('modalVideo');
+
+        if (!thumb || !modal || !modalVideo) return;
+
+        let triedFallback = false;
+
+        // error handler: try MKV fallback if MP4 fails
+        function onVideoError() {
+            const sourceEl = modalVideo.querySelector('source');
+            if (!triedFallback) {
+                triedFallback = true;
+                const mkv = thumb.getAttribute('data-src-mkv') || thumb.getAttribute('data-src');
+                if (mkv) {
+                    sourceEl.src = mkv;
+                    sourceEl.type = 'video/x-matroska';
+                    modalVideo.load();
+                    modalVideo.play().catch(() => {});
+                    return;
+                }
+            }
+
+            // If fallback also fails, inform the user and close
+            mostrarAlerta('No se pudo reproducir el video en este navegador.', 'error');
+            closeModal();
+        }
+
+        function openModal() {
+            triedFallback = false;
+            const sourceEl = modalVideo.querySelector('source');
+            const mp4 = thumb.getAttribute('data-src-mp4');
+            const mkv = thumb.getAttribute('data-src-mkv') || thumb.getAttribute('data-src');
+
+            // prefer MP4 for compatibility
+            if (mp4) {
+                sourceEl.src = mp4;
+                sourceEl.type = 'video/mp4';
+            } else if (mkv) {
+                sourceEl.src = mkv;
+                sourceEl.type = 'video/x-matroska';
+            }
+
+            // attach error listener once
+            modalVideo.removeEventListener('error', onVideoError);
+            modalVideo.addEventListener('error', onVideoError);
+
+            modalVideo.load();
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            modalVideo.play().catch(() => {});
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            try { modalVideo.pause(); } catch(e) {}
+            const sourceEl = modalVideo.querySelector('source');
+            if (sourceEl) { sourceEl.src = ''; }
+            modalVideo.load();
+            modalVideo.removeEventListener('error', onVideoError);
+        }
+
+        thumb.addEventListener('click', openModal);
+        thumb.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(); } });
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (backdrop) backdrop.addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+    })();
+
 });
 
 // ============================================
