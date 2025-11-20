@@ -16,42 +16,6 @@
     --transition: all 0.3s ease;
 }
 
-/* Animated background (subtle, performant) */
-.animated-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background: linear-gradient(120deg, rgba(2,6,23,0.7), rgba(6,16,34,0.6));
-    mix-blend-mode: normal;
-    filter: saturate(1.1);
-}
-
-/* Gradient overlay with subtle motion */
-.animated-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(60deg, rgba(0,212,255,0.06), rgba(14,165,233,0.04), rgba(0,0,0,0));
-    background-size: 300% 300%;
-    animation: animatedGradient 18s ease infinite;
-    opacity: 1;
-}
-
-@keyframes animatedGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Place page content above animated background */
-body > * { position: relative; z-index: 1; }
-
-/* Respect user preference for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .animated-bg::before { animation: none; }
-}
-
 /* ============================================
    ESTILOS GLOBALES
    ============================================ */
@@ -546,19 +510,15 @@ body {
     display: flex;
     gap: 12px;
     align-items: center;
-    background: rgba(255,255,255,0.03);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(10,20,40,0.6);
     padding: 14px;
-    border-radius: 12px;
+    border-radius: 10px;
     border: 1px solid rgba(0,212,255,0.06);
-    box-shadow: 0 6px 18px rgba(2,6,23,0.6);
-    transition: transform 0.22s cubic-bezier(.2,.9,.2,1), box-shadow 0.22s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
-.feature-card:hover,
-.feature-card.touch-active {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 18px 40px rgba(0,212,255,0.12);
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0,212,255,0.08);
 }
 .feature-icon {
     width: 48px;
@@ -576,33 +536,6 @@ body {
     width: 28px;
     height: 28px;
     display: block;
-    transition: transform 0.25s ease, stroke 0.25s ease, fill 0.25s ease;
-}
-
-.feature-icon:hover svg,
-.feature-icon.touch-active svg { transform: scale(1.05) rotate(-5deg); }
-
-/* Project cards glassmorphism */
-.proyecto-card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(0,212,255,0.06);
-}
-
-/* SVG stroke draw hint on load (subtle) */
-.feature-icon svg path,
-.feature-icon svg circle,
-.feature-icon svg rect {
-    stroke-dasharray: 300;
-    stroke-dashoffset: 0;
-}
-
-/* Disable heavy effects on small screens for performance */
-@media (max-width: 768px) {
-    .animated-bg::before { animation-duration: 40s; opacity: 0.6; }
-    .feature-card { backdrop-filter: none; -webkit-backdrop-filter: none; }
-    .proyecto-card { backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
 .feature-body h5 {
     margin: 0 0 4px 0;
@@ -927,59 +860,6 @@ body {
 
 .proyecto-highlight .proyecto-img {
     border-radius: 12px;
-}
-
-/* ============================================
-   VIDEO CARD + MODAL
-   ============================================ */
-.proyectos-video {
-    padding: 40px 20px 80px 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
-}
-.proyectos-video h2 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    text-align: left;
-    margin-bottom: 0.25rem;
-}
-.video-intro {
-    color: var(--text-light);
-    margin-bottom: 1rem;
-}
-.video-card {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-.video-thumb {
-    cursor: pointer;
-    width: 100%;
-    max-width: 880px;
-    border-radius: 12px;
-    padding: 18px;
-    background: linear-gradient(180deg, rgba(0,212,255,0.02), rgba(255,255,255,0.01));
-    border: 1px solid rgba(0,212,255,0.04);
-    box-shadow: 0 8px 30px rgba(0,212,255,0.06);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-.video-thumb:focus,
-.video-thumb:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,212,255,0.08); outline: none; }
-.video-thumb-inner { display: flex; align-items: center; gap: 16px; }
-.video-thumb svg { color: var(--primary-color); flex-shrink: 0; }
-.video-thumb-text strong { display: block; color: #e6f7ff; font-size: 1.05rem; }
-.video-thumb-text span { color: var(--text-light); font-size: 0.92rem; }
-
-/* Modal overlay */
-.video-modal { display: none; position: fixed; inset: 0; z-index: 2000; align-items: center; justify-content: center; }
-.video-modal.active { display: flex; }
-.video-modal-backdrop { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(6,16,34,0.85)); backdrop-filter: blur(6px); }
-.video-modal-content { position: relative; width: min(1100px, 96%); max-width: 1200px; z-index: 2010; padding: 18px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
-.video-modal-content video { width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow-lg); background: black; }
-.video-close { position: absolute; right: 10px; top: 6px; z-index: 2020; background: transparent; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 8px 12px; }
-
-@media (max-width: 768px) {
-    .video-thumb { max-width: 100%; padding: 14px; }
-    .video-modal-content { width: 96%; padding: 12px; }
 }
 
 .proyecto-small .proyecto-img {
@@ -1609,98 +1489,6 @@ body {
     to {
         opacity: 1;
         transform: translateX(0);
-    }
-}
-
-/* Reveal on scroll utility */
-.reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.7s cubic-bezier(.2,.9,.2,1), transform 0.7s cubic-bezier(.2,.9,.2,1);
-    will-change: transform, opacity;
-}
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* SVG stroke-draw animation - elements will animate when parent has .active */
-.svg-draw path,
-.svg-draw circle,
-.svg-draw rect,
-.svg-draw line {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    transition: stroke-dashoffset 0.9s ease, stroke 0.3s ease, fill 0.3s ease;
-    stroke-linecap: round;
-}
-.reveal.active .svg-draw path,
-.reveal.active .svg-draw circle,
-.reveal.active .svg-draw rect,
-.reveal.active .svg-draw line {
-    stroke-dashoffset: 0;
-}
-
-/* Hero floating blobs (subtle, performant) */
-.hero::after {
-    content: '';
-    pointer-events: none;
-    position: absolute;
-    right: -10%;
-    top: -10%;
-    width: 60vmax;
-    height: 60vmax;
-    background: radial-gradient(circle at 20% 20%, rgba(0,212,255,0.06), transparent 8%), radial-gradient(circle at 70% 80%, rgba(14,165,233,0.04), transparent 12%);
-    filter: blur(40px);
-    transform: translate3d(0,0,0);
-    animation: floatBlobs 20s ease-in-out infinite;
-    z-index: 0;
-}
-
-@keyframes floatBlobs {
-    0% { transform: translateY(0) translateX(0) scale(1); }
-    50% { transform: translateY(-20px) translateX(10px) scale(1.02); }
-    100% { transform: translateY(0) translateX(0) scale(1); }
-}
-
-/* Button ripple effect (simple) */
-.cta-button {
-    position: relative;
-    overflow: hidden;
-}
-.cta-button::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 8px;
-    height: 8px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-    transition: transform 0.45s ease, opacity 0.45s ease;
-}
-.cta-button:active::after,
-.cta-button.pressed::after {
-    transform: translate(-50%, -50%) scale(30);
-    opacity: 0.12;
-    transition: transform 0.5s cubic-bezier(.2,.9,.2,1), opacity 0.5s ease;
-}
-
-/* Parallax avatar wrapper (will be moved via JS) */
-.hero-profile-img {
-    transition: transform 0.25s ease-out;
-}
-
-/* Prefer reduced motion: disable non-essential animations */
-@media (prefers-reduced-motion: reduce) {
-    .hero::after,
-    .animated-bg::before,
-    .feature-card:hover,
-    .orbit-item {
-        animation: none !important;
-        transition: none !important;
     }
 }
 
