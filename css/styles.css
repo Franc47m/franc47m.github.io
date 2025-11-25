@@ -933,6 +933,9 @@ body {
 .comentarios {
     padding: 50px 20px;
     background: var(--light-bg);
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .comentarios h2 {
@@ -959,6 +962,8 @@ body {
     gap: 3rem;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .comentario-form {
@@ -967,6 +972,8 @@ body {
     border-radius: 15px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group {
@@ -1029,6 +1036,9 @@ body {
     border-radius: 15px;
     border: 1px solid var(--border-color);
     box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .comentarios-lista h3 {
@@ -1044,6 +1054,11 @@ body {
     margin-bottom: 1.5rem;
     border-left: 4px solid var(--primary-color);
     animation: slideInLeft 0.5s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Fechas una al lado de la otra */
@@ -1227,6 +1242,32 @@ body {
 }
 
 @media (max-width: 480px) {
+    .comentarios {
+        padding: 20px 10px;
+    }
+
+    .comentarios-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .comentario-form {
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .comentarios-lista {
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
     .comentarios-carousel-wrapper {
         width: 100%;
         max-width: 100%;
@@ -1585,8 +1626,30 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .comentarios {
+        padding: 30px 15px;
+    }
+
     .comentarios-container {
         grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .comentario-form {
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .comentarios-lista {
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .blog-header {
